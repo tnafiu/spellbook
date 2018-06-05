@@ -10,8 +10,9 @@ button.addEventListener('click', changeHeader);
 const submit = document.querySelector("#submitForm");
 
 function changeWithSubmit() {
-    const secondHeading = document.querySelector('#fourth');
-    secondHeading.textContent = document.getElementById("myForm").elements.namedItem("headerinp").value;
+    const userSpell = document.querySelector('#spells');
+    userSpell.textContent += ' ' + document.getElementById("myForm").elements.namedItem("yourSpell").value + ',';
+
 }
 
 function enterPressed() {
