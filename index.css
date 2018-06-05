@@ -1,0 +1,21 @@
+body {
+    text-align: center;
+    color: rgb(218, 165, 32);
+    background: rgb(131, 0, 0);
+    font-family: 'Cinzel', serif;
+    font-size: 30px;
+}
+
+button {
+    color: rgb(0, 0, 0);
+    background: rgb(222, 184, 135);
+}
+
+#submitForm {
+    color: rgb(0, 0, 0);
+    background: rgb(222, 184, 135);
+}
+
+form {
+    font-size: 40px;
+}
