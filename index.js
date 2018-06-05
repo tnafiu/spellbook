@@ -10,7 +10,7 @@ button.addEventListener('click', changeHeader);
 const submit = document.querySelector("#submitForm");
 
 function changeWithSubmit() {
-    const secondHeading = document.querySelector('#second');
+    const secondHeading = document.querySelector('#fourth');
     secondHeading.textContent = document.getElementById("myForm").elements.namedItem("headerinp").value;
 }
 
