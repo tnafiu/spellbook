@@ -7,16 +7,21 @@ function changeHeader() {
 
 button.addEventListener('click', changeHeader);
 
-const submit = document.querySelector("#submitForm");
+const form = document.querySelector("form");
 
-function changeWithSubmit() {
+const changeWithSubmit = function(ev) {
+    ev.preventDefault()
+
+    const f = ev.target;
+    const spellName = f.yourSpell.value;
+
     const userSpell = document.querySelector('#spells');
-    userSpell.textContent += ' ' + document.getElementById("myForm").elements.namedItem("yourSpell").value + ',';
-
+    userSpell.innerHTML += `<li>${spellName}</li>`;
+    f.reset()
 }
 
-function enterPressed() {
+const enterPressed = function(event) {
     if (event.keycode == 13) changeWithSubmit;
 }
-submit.addEventListener('click', changeWithSubmit);
-submit.addEventListener('keydown', enterPressed(event));
+form.addEventListener('submit', changeWithSubmit);
+form.addEventListener('keydown', enterPressed(event));

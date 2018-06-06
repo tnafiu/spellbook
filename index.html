@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Spellbook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive|Philosopher" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="index.css">
-    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
 </head>
 
 <body>
@@ -18,12 +18,10 @@
     <button>Change Text</button>
     <form id="myForm" onsubmit="return false">
         Now You Make a Spell:<br>
-        <input type="text" name="yourSpell" autofocus><br>
-        <input type="submit" value="Submit" id="submitForm">
+        <input type="text" name="yourSpell" placeholder="Enter a spell name" autofocus><br>
+        <button type="submit">Submit</button>
     </form>
-    <div id="spells">
-
-    </div>
+    <ul id="spells"></ul>
     <script src="index.js"></script>
 </body>
 
