@@ -20,7 +20,8 @@ img#magic-wand {
     width: 25vw;
 }
 
-{
+ul {
     font-family: 'Philosopher', sans-serif;
     color: rgb(105, 105, 105);
+    font-size: 40px;
 }

@@ -16,8 +16,11 @@ const changeWithSubmit = function(ev) {
     const spellName = f.yourSpell.value;
     const spellDesc = f.yourDescription.value;
 
-    const userSpell = document.querySelector('#spells');
-    userSpell.innerHTML += `<li>${spellName}: ${spellDesc}</li>`;
+    const currentUl = document.getElementById("spells");
+    const newList = document.createElement("li");
+    newList.appendChild(document.createTextNode(spellName + ": " + spellDesc));
+    currentUl.appendChild(newList);
+
     f.reset()
 }
 
