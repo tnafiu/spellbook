@@ -1,3 +1,8 @@
+/*$(window).load(function fadeWand() {
+    $("#magic-wand").fadeToggle(3000);
+});*/
+
+
 const button = document.querySelector('button');
 
 function changeHeader() {
@@ -17,8 +22,18 @@ const changeWithSubmit = function(ev) {
     const spellDesc = f.yourDescription.value;
 
     const currentUl = document.getElementById("spells");
+
     const newList = document.createElement("li");
-    newList.appendChild(document.createTextNode(spellName + ": " + spellDesc));
+    const spellSpan = document.createElement("span");
+    const descSpan = document.createElement("span");
+
+    const text = document.createTextNode(": ");
+    spellSpan.textContent = spellName;
+    descSpan.textContent = spellDesc;
+
+    newList.appendChild(spellSpan);
+    newList.appendChild(text);
+    newList.appendChild(descSpan);
     currentUl.appendChild(newList);
 
     f.reset()
