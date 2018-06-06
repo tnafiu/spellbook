@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Spellbook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive|Philosopher" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Philosopher" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="index.css">
 </head>
 
 <body>
+    <img src="magic-wand.png" id="magic-wand" alt="">
+
     <h1 id="first">Spellbook:</h1>
     <h1 id="second">Harry's Spells</h1>
     <h1 id="third">Hermione's Spells <em>(Better)</em></h1>
@@ -18,8 +20,11 @@
     <button>Change Text</button>
     <form id="myForm" onsubmit="return false">
         Now You Make a Spell:<br>
-        <input type="text" name="yourSpell" placeholder="Enter a spell name" autofocus><br>
-        <button type="submit">Submit</button>
+        <div class="formInp">
+            <input type="text" name="yourSpell" placeholder="Enter a spell name" autofocus>
+            <input type="text" name="yourDescription" placeholder="Enter a description">
+            <button type="submit">Submit</button>
+        </div>
     </form>
     <ul id="spells"></ul>
     <script src="index.js"></script>

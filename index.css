@@ -2,8 +2,8 @@ body {
     text-align: center;
     color: rgb(218, 165, 32);
     background: rgb(131, 0, 0);
-    font-family: 'Cinzel', serif;
-    font-size: 25px;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 17px;
     margin: 0;
 }
 
@@ -12,7 +12,15 @@ button {
     background: rgb(222, 184, 135);
 }
 
-#submitForm {
-    color: rgb(0, 0, 0);
-    background: rgb(222, 184, 135);
+img#magic-wand {
+    position: absolute;
+    right: 5vw;
+    bottom: 5vw;
+    transform: rotate(15deg);
+    width: 25vw;
+}
+
+{
+    font-family: 'Philosopher', sans-serif;
+    color: rgb(105, 105, 105);
 }

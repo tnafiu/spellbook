@@ -14,9 +14,10 @@ const changeWithSubmit = function(ev) {
 
     const f = ev.target;
     const spellName = f.yourSpell.value;
+    const spellDesc = f.yourDescription.value;
 
     const userSpell = document.querySelector('#spells');
-    userSpell.innerHTML += `<li>${spellName}</li>`;
+    userSpell.innerHTML += `<li>${spellName}: ${spellDesc}</li>`;
     f.reset()
 }
 
