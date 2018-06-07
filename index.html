@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Philosopher|EB+Garamond" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -39,8 +40,18 @@
             <li class="spell template">
                 <span class="yourSpell"></span>
                 <span class="yourDescription"></span>
-                <button class="delete">Delete</button>
-                <button class="fav">Like!</button>
+                <button class="delete">
+					<i class="far fa-trash-alt" title="remove"></i>
+				</button>
+                <button class="fav">
+					<i class="fas fa-star" title="favourite"></i>
+				</button>
+                <button class="move up">
+					<i class="fas fa-chevron-circle-up" title="move up"></i>
+				</button>
+                <button class="move down">
+
+				</button>
             </li>
         </ul>
     </main>
