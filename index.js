@@ -32,6 +32,19 @@ const app = {
         return el;
     },
 
+    makeDeleteButton: function() {
+        const deleteButton = document.createElement('input')
+        deleteButton.classList.add('deleteMe')
+        deleteButton.setAttribute("type", "submit")
+        deleteButton.setAttribute("value", "Delete")
+        deleteButton.onclick = function() {
+            deleteButton.parentElement.remove();
+            app.spellArray.splice(deleteButton.parentNode)
+        }
+        return deleteButton;
+
+    },
+
     renderList: function(spell) {
         // ['name', 'level']
         const properties = Object.keys(spell);
@@ -44,19 +57,12 @@ const app = {
         const newList = document.createElement('li');
         newList.classList.add('spell');
 
-        // append each <span> to the <li>
+        // appends each <span> to the <li> element created above
         childElements.forEach(function(el) {
             newList.appendChild(el)
         });
-
+        newList.appendChild(this.makeDeleteButton())
         return newList;
-    },
-
-    makeDeleteButton: function() {
-        deleteButton = document.createElement('input')
-        deleteButton.setAttribute("type", "submit")
-        deleteButton.setAttribute("value", "Delete")
-        return deleteButton;
     },
 
     changeWithSubmit: function(ev) {
@@ -78,5 +84,9 @@ const app = {
 
         f.reset();
     },
+
+    changeWithDelete: function() {
+
+    }
 }
 app.init();

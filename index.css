@@ -33,3 +33,9 @@ img#magic-wand {
     color: rgb(222, 184, 135);
     font-size: 40px;
 }
+
+.deleteMe {
+    height: 35px;
+    position: relative;
+    bottom: 0.7vw;
+}
