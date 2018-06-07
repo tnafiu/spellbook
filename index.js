@@ -16,11 +16,26 @@ class App {
         this.spells = []
         this.list = document.querySelector('#spells')
 
+        this.load()
+
         const form = document.querySelector('form');
         form.addEventListener('submit', (ev) => {
             ev.preventDefault()
             this.changeWithSubmit(ev)
         })
+    }
+
+    load() {
+        // read JSON from localStorage
+        const spellJSON = localStorage.getItem('spells')
+
+        //Convert JSON back to an array
+        const spellArray = JSON.parse(spellJSON)
+
+        // Load the spells back on to the page
+        if (spellArray) {
+            spellArray.forEach(this.addSpell.bind(this))
+        }
     }
 
     save() {
@@ -53,6 +68,8 @@ class App {
                 el.setAttribute('title', spell[property])
             }
         })
+
+        // Mark is as a favourite is applicable
 
         // Functionality for the delete button
         listItem
@@ -103,6 +120,16 @@ class App {
         this.save()
     }
 
+    addSpell(spell) {
+
+        this.spells.push(spell)
+
+        const newList = this.renderList(spell);
+
+        const currentUl = document.querySelector('#spells');
+        currentUl.appendChild(newList);
+    }
+
     changeWithSubmit(ev) {
 
         const f = ev.target;
@@ -112,16 +139,11 @@ class App {
             description: f.yourDescription.value,
             favourite: false,
         }
-
-        this.spells.push(spell)
+        this.addSpell(spell)
         this.save()
 
-        const newList = this.renderList(spell);
-
-        const currentUl = document.querySelector('#spells');
-        currentUl.appendChild(newList);
-
         f.reset();
+        f.spellName.focus();
     }
 }
 
