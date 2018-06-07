@@ -41,8 +41,10 @@ const app = {
 
         properties.forEach(property => {
             const el = listItem.querySelector(`.${property}`)
-            el.textContent = spell[property]
-            el.setAttribute('title', spell[property])
+            if (el) {
+                el.textContent = spell[property]
+                el.setAttribute('title', spell[property])
+            }
         })
 
         // Functionality for the delete button
@@ -54,7 +56,12 @@ const app = {
             )
 
         // Functionality for the favourite button
-        listItem.querySelector(button.fav)
+        listItem
+            .querySelector(button.fav)
+            .addEventListener(
+                'click',
+                this.favToggle.bind(this, spell)
+            )
 
         return listItem;
     },
@@ -70,6 +77,22 @@ const app = {
         this.spells.splice(i, 1)
     },
 
+    favToggle: function() {
+        console.log("I like it!")
+        const button = ev.target
+        const item = button.closest('.spell')
+        spell.favourite = item.classList.toggle('fav')
+    },
+
+    moveDown: function(spell, ev) {
+        // find the <li>
+        const button = ev.target
+        const item = button.closest('.spell')
+
+        // find it in the array
+        const i = this.spells.indexOf(spell)
+    },
+
     changeWithSubmit: function(ev) {
 
         const f = ev.target;
@@ -77,9 +100,11 @@ const app = {
         const spell = {
             name: f.yourSpell.value,
             description: f.yourDescription.value,
+            favourite: false,
         }
 
-        this.item
+        this.spells.push(spell)
+
         const newList = this.renderList(spell);
 
         const currentUl = document.querySelector('#spells');
