@@ -18,10 +18,18 @@ img#magic-wand {
     bottom: 5vw;
     transform: rotate(15deg);
     width: 25vw;
+    transition: all 3s;
+    opacity: 0;
 }
 
-ul {
+.spell {
     font-family: 'Philosopher', sans-serif;
     color: rgb(105, 105, 105);
+    font-size: 40px;
+}
+
+.description {
+    font-family: 'EB Garamond', serif;
+    color: rgb(222, 184, 135);
     font-size: 40px;
 }

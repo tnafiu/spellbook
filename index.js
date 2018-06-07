@@ -1,6 +1,7 @@
-/*$(window).load(function fadeWand() {
-    $("#magic-wand").fadeToggle(3000);
-});*/
+/*const wand = document.querySelector('#magic-wand');
+wand.style.opacity = 1;
+window.onload()*/
+
 
 
 const button = document.querySelector('button');
@@ -9,38 +10,60 @@ function changeHeader() {
     const heading = document.querySelector('#second');
     heading.textContent = "Lies, Harry's Spells Are Better";
 }
-
 button.addEventListener('click', changeHeader);
 
-const form = document.querySelector("form");
+const app = {
+    init: function() {
+        const form = document.querySelector('form')
+        form.addEventListener('submit', (ev) => {
+            ev.preventDefault()
+            this.changeWithSubmit(ev)
+        })
+    },
 
-const changeWithSubmit = function(ev) {
-    ev.preventDefault()
+    renderProperty: function(name, value) {
+        // el stands for the element we're creating
+        const el = document.createElement('span')
+        el.classList.add(name)
+        el.textContent = value
+        el.setAttribute('title', value)
+        return el
+    },
 
-    const f = ev.target;
-    const spellName = f.yourSpell.value;
-    const spellDesc = f.yourDescription.value;
+    renderList: function(spell) {
+        // ['name', 'level']
+        const properties = Object.keys(spell)
 
-    const currentUl = document.getElementById("spells");
+        // collects an array of <span> elements
+        const childElements = properties.map((prop) => {
+            return this.renderProperty(prop, spell[prop])
+        })
 
-    const newList = document.createElement("li");
-    const spellSpan = document.createElement("span");
-    const descSpan = document.createElement("span");
+        const newList = document.createElement('li')
+        newList.classList.add('spell')
 
-    const text = document.createTextNode(": ");
-    spellSpan.textContent = spellName;
-    descSpan.textContent = spellDesc;
+        // append each <span> to the <li>
+        childElements.forEach(function(el) {
+            newList.appendChild(el)
+        })
 
-    newList.appendChild(spellSpan);
-    newList.appendChild(text);
-    newList.appendChild(descSpan);
-    currentUl.appendChild(newList);
+        return newList
+    },
 
-    f.reset()
+    changeWithSubmit: function(ev) {
+        const f = ev.target
+
+        const spell = {
+            name: f.yourSpell.value,
+            description: f.yourDescription.value,
+        }
+
+        const newList = this.renderList(spell)
+
+        const currentUl = document.querySelector('#spells')
+        currentUl.appendChild(item)
+
+        f.reset()
+    },
 }
-
-const enterPressed = function(event) {
-    if (event.keycode == 13) changeWithSubmit;
-}
-form.addEventListener('submit', changeWithSubmit);
-form.addEventListener('keydown', enterPressed(event));
+app.init()
