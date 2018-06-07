@@ -14,6 +14,7 @@ const app = {
     // an array to hold the spells
     spellArray: [],
     init: function() {
+        //this.spells = [];
         const form = document.querySelector('form');
         form.addEventListener('submit', (ev) => {
             ev.preventDefault()
@@ -30,17 +31,17 @@ const app = {
         return el;
     },
 
-    makeDeleteButton: function() {
+    /*makeDeleteButton: function() {
         const deleteButton = document.createElement('input')
         deleteButton.classList.add('deleteMe')
         deleteButton.setAttribute("type", "submit")
         deleteButton.setAttribute("value", "Delete")
         deleteButton.onclick = function() {
             deleteButton.parentElement.remove();
-            app.spellArray.splice(app.spellArray.indexOf(deleteButton.parentNode, 1))
+            app.spellArray.splice(app.spellArray.indexOf(deleteButton.parentNode, 0))
         }
         return deleteButton;
-    },
+    },*/
 
     renderList: function(spell) {
         // ['name', 'level']
@@ -58,8 +59,29 @@ const app = {
         childElements.forEach(function(el) {
             newList.appendChild(el)
         });
-        newList.appendChild(this.makeDeleteButton())
+
+        const deleteButton = document.createElement('button')
+        deleteButton.classList.add('delete')
+        deleteButton.textContent = 'Delete'
+        deleteButton.addEventListener(
+            'click',
+            this.removeSpell.bind(this, spell)
+        )
+
+        newList.appendChild(deleteButton)
+
         return newList;
+    },
+
+    removeSpell: function(ev) {
+        // Removes the spell from the DOM
+        const button = ev.target
+        const item = button.closest('.spell')
+        item.parentNode.removeChild(item)
+
+        // Removes the spell from the array
+        const i = this.spells.indexOf(spell)
+        this.spells.splice(i, 1)
     },
 
     changeWithSubmit: function(ev) {
@@ -70,9 +92,6 @@ const app = {
             name: f.yourSpell.value,
             description: f.yourDescription.value,
         }
-        const val = Object.values(spell);
-        this.spellArray.push(val[0]);
-        console.log(this.spellArray);
 
         const newList = this.renderList(spell);
 
