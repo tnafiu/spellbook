@@ -23,6 +23,13 @@ class App {
         })
     }
 
+    save() {
+        localStorage.setItem(
+            'spells',
+            JSON.stringify(this.spells)
+        )
+    }
+
     renderProperty(name, value) {
         // el stands for the element we're creating
         const el = document.createElement('span');
@@ -75,6 +82,7 @@ class App {
         // Removes the spell from the array
         const i = this.spells.indexOf(spell)
         this.spells.splice(i, 1)
+        this.save()
     }
 
     favToggle() {
@@ -82,6 +90,7 @@ class App {
         const button = ev.target
         const item = button.closest('.spell')
         spell.favourite = item.classList.toggle('fav')
+        this.save()
     }
 
     moveDown(spell, ev) {
@@ -91,6 +100,7 @@ class App {
 
         // find it in the array
         const i = this.spells.indexOf(spell)
+        this.save()
     }
 
     changeWithSubmit(ev) {
@@ -104,6 +114,7 @@ class App {
         }
 
         this.spells.push(spell)
+        this.save()
 
         const newList = this.renderList(spell);
 
