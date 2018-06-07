@@ -12,9 +12,10 @@ button.addEventListener('click', changeHeader);
 
 const app = {
     // an array to hold the spells
-    spellArray: [],
     init: function() {
-        //this.spells = [];
+        this.template = document.querySelector('.spell.template')
+        this.spells = []
+
         const form = document.querySelector('form');
         form.addEventListener('submit', (ev) => {
             ev.preventDefault()
@@ -31,46 +32,31 @@ const app = {
         return el;
     },
 
-    /*makeDeleteButton: function() {
-        const deleteButton = document.createElement('input')
-        deleteButton.classList.add('deleteMe')
-        deleteButton.setAttribute("type", "submit")
-        deleteButton.setAttribute("value", "Delete")
-        deleteButton.onclick = function() {
-            deleteButton.parentElement.remove();
-            app.spellArray.splice(app.spellArray.indexOf(deleteButton.parentNode, 0))
-        }
-        return deleteButton;
-    },*/
-
     renderList: function(spell) {
+        const listItem = this.template.cloneNode(true)
+        listItem.classList.remove('template')
+
         // ['name', 'level']
         const properties = Object.keys(spell);
 
-        // collects an array of <span> elements
-        const childElements = properties.map((prop) => {
-            return this.renderProperty(prop, spell[prop])
+        properties.forEach(property => {
+            const el = listItem.querySelector(`.${property}`)
+            el.textContent = spell[property]
+            el.setAttribute('title', spell[property])
         })
 
-        const newList = document.createElement('li');
-        newList.classList.add('spell');
+        // Functionality for the delete button
+        listItem
+            .querySelector(button.delete)
+            .addEventListener(
+                'click',
+                this.removeSpell.bind(this, spell)
+            )
 
-        // appends each <span> to the <li> element created above
-        childElements.forEach(function(el) {
-            newList.appendChild(el)
-        });
+        // Functionality for the favourite button
+        listItem.querySelector(button.fav)
 
-        const deleteButton = document.createElement('button')
-        deleteButton.classList.add('delete')
-        deleteButton.textContent = 'Delete'
-        deleteButton.addEventListener(
-            'click',
-            this.removeSpell.bind(this, spell)
-        )
-
-        newList.appendChild(deleteButton)
-
-        return newList;
+        return listItem;
     },
 
     removeSpell: function(ev) {
@@ -93,6 +79,7 @@ const app = {
             description: f.yourDescription.value,
         }
 
+        this.item
         const newList = this.renderList(spell);
 
         const currentUl = document.querySelector('#spells');
