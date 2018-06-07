@@ -10,29 +10,29 @@ function changeHeader() {
 }
 button.addEventListener('click', changeHeader);
 
-const app = {
-    // an array to hold the spells
-    init: function() {
+class App {
+    constructor() {
         this.template = document.querySelector('.spell.template')
         this.spells = []
+        this.list = document.querySelector('#spells')
 
         const form = document.querySelector('form');
         form.addEventListener('submit', (ev) => {
             ev.preventDefault()
             this.changeWithSubmit(ev)
         })
-    },
+    }
 
-    renderProperty: function(name, value) {
+    renderProperty(name, value) {
         // el stands for the element we're creating
         const el = document.createElement('span');
         el.classList.add(name);
         el.textContent = value + " ";
         el.setAttribute('title', value);
         return el;
-    },
+    }
 
-    renderList: function(spell) {
+    renderList(spell) {
         const listItem = this.template.cloneNode(true)
         listItem.classList.remove('template')
 
@@ -64,9 +64,9 @@ const app = {
             )
 
         return listItem;
-    },
+    }
 
-    removeSpell: function(ev) {
+    removeSpell(ev) {
         // Removes the spell from the DOM
         const button = ev.target
         const item = button.closest('.spell')
@@ -75,25 +75,25 @@ const app = {
         // Removes the spell from the array
         const i = this.spells.indexOf(spell)
         this.spells.splice(i, 1)
-    },
+    }
 
-    favToggle: function() {
+    favToggle() {
         console.log("I like it!")
         const button = ev.target
         const item = button.closest('.spell')
         spell.favourite = item.classList.toggle('fav')
-    },
+    }
 
-    moveDown: function(spell, ev) {
+    moveDown(spell, ev) {
         // find the <li>
         const button = ev.target
         const item = button.closest('.spell')
 
         // find it in the array
         const i = this.spells.indexOf(spell)
-    },
+    }
 
-    changeWithSubmit: function(ev) {
+    changeWithSubmit(ev) {
 
         const f = ev.target;
 
@@ -111,10 +111,7 @@ const app = {
         currentUl.appendChild(newList);
 
         f.reset();
-    },
-
-    changeWithDelete: function() {
-
     }
 }
-app.init();
+
+const app = new App()
