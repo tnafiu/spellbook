@@ -2,8 +2,6 @@
 wand.style.opacity = 1;
 window.onload()*/
 
-
-
 const button = document.querySelector('button');
 
 function changeHeader() {
@@ -39,10 +37,9 @@ const app = {
         deleteButton.setAttribute("value", "Delete")
         deleteButton.onclick = function() {
             deleteButton.parentElement.remove();
-            app.spellArray.splice(deleteButton.parentNode)
+            app.spellArray.splice(app.spellArray.indexOf(deleteButton.parentNode, 1))
         }
         return deleteButton;
-
     },
 
     renderList: function(spell) {
