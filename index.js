@@ -69,7 +69,7 @@ class App {
             }
         })
 
-        // Mark the span as a favourite is applicable
+        // Mark the span as a favourite if applicable
         if (spell.favourite) {
             listItem.classList.add('fav')
         }
@@ -152,7 +152,14 @@ class App {
         }
     }
 
-    removeSpell(ev) {
+    favToggle(spell, ev) {
+        const button = ev.target
+        const listItem = button.closest('.spell')
+        spell.favourite = listItem.classList.toggle('fav')
+        this.save()
+    }
+
+    removeSpell(spell, ev) {
         // Removes the spell from the DOM
         const button = ev.target
         const listItem = button.closest('.spell')
@@ -161,13 +168,6 @@ class App {
         // Removes the spell from the array
         const i = this.spells.indexOf(spell)
         this.spells.splice(i, 1)
-        this.save()
-    }
-
-    favToggle() {
-        const button = ev.target
-        const listItem = button.closest('.spell')
-        spell.favourite = listItem.classList.toggle('fav')
         this.save()
     }
 
@@ -182,19 +182,20 @@ class App {
     }
 
     changeWithSubmit(ev) {
+        ev.preventDefault()
 
         const f = ev.target;
 
         const spell = {
             name: f.yourSpell.value,
-            description: f.yourDescription.value,
+            description: f.yourDesc.value,
             favourite: false,
         }
         this.addSpell(spell)
         this.save()
 
         f.reset();
-        f.spellName.focus();
+        f.yourSpell.focus();
     }
 }
 

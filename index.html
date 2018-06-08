@@ -20,14 +20,16 @@
     <h1 id="third">Hermione's Spells <em>(Better)</em></h1>
     <h1 id="fourth">Ron Has Spells Too!</h1>
     <button>Change Text</button>
-    <form id="myForm" onsubmit="return false">
+
+    <form id="myForm">
         Now You Make a Spell:<br>
         <div class="formInp">
             <input type="text" name="yourSpell" placeholder="Enter a spell name" autofocus>
-            <input type="text" name="yourDescription" placeholder="Enter a description">
+            <input type="text" name="yourDesc" placeholder="Enter a description">
             <button type="submit">Submit</button>
         </div>
     </form>
+
     <div class="container">
         <img src="magic-wand.png" id="magic-wand" alt="Avatar" class="image">
         <div class="middle">
@@ -38,8 +40,8 @@
     <main>
         <ul id="spells"></ul>
         <li class="spell template">
-            <span class="yourSpell"></span>
-            <span class="yourDescription"></span>
+            <span class="name"></span>
+            <span class="description"></span>
             <button class="delete">
                 <i class="far fa-trash-alt" title="remove"></i>
 			</button>
@@ -50,7 +52,7 @@
 				<i class="fas fa-chevron-circle-up" title="move up"></i>
 			</button>
             <button class="move down">
-                <i class="fas fa-arrow-down"></i>
+                <i class="fas fa-chevron-circle-down"></i>
 			</button>
         </li>
     </main>
