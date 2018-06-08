@@ -18,7 +18,7 @@ class App {
 
         this.load()
 
-        const form = document.querySelector('form');
+        const form = document.querySelector('form')
         form.addEventListener('submit', (ev) => {
             ev.preventDefault()
             this.changeWithSubmit(ev)
@@ -69,11 +69,14 @@ class App {
             }
         })
 
-        // Mark is as a favourite is applicable
+        // Mark the span as a favourite is applicable
+        if (spell.favourite) {
+            listItem.classList.add('fav')
+        }
 
         // Functionality for the delete button
         listItem
-            .querySelector(button.delete)
+            .querySelector('button.delete')
             .addEventListener(
                 'click',
                 this.removeSpell.bind(this, spell)
@@ -81,20 +84,79 @@ class App {
 
         // Functionality for the favourite button
         listItem
-            .querySelector(button.fav)
+            .querySelector('button.fav')
             .addEventListener(
                 'click',
                 this.favToggle.bind(this, spell)
             )
 
+        // Functionality for the move-up button
+        listItem
+            .querySelector('button.up')
+            .addEventListener(
+                'click',
+                this.moveUp.bind(this, spell)
+            )
+
+        // Functionality for the move-down button
+        listItem
+            .querySelector('button.down')
+            .addEventListener(
+                'click',
+                this.moveDown.bind(this, spell)
+            )
+
         return listItem;
+    }
+    moveDown(spell, ev) {
+        // Find the <li>
+        const button = ev.target
+        const listItem = button.closest('.spell')
+
+        // Find it in the array
+        const i = this.spells.indexOf(spell)
+
+        // Only move it if it's not already last
+        if (i < this.spells.length - 1) {
+            // Move it on the page
+            this.list.insertBefore(listItem.nextSibling, listItem)
+
+            // Move it in the array
+            const nextSpell = this.spells[i + 1]
+            this.spells[i + 1] = spell
+            this.spells[i] = nextSpell
+
+            this.save()
+        }
+    }
+
+    moveUp(spell, ev) {
+        // Find the <li>
+        const button = ev.target
+        const listItem = button.closest('.spell')
+
+        // Find it in the array
+        const i = this.spells.indexOf(spell)
+
+        // Only move it if it's not already first
+        if (i > 0) {
+            // Move it on the page
+            this.list.insertBefore(listItem, listItem.previousSibling)
+
+            // Move it in the array
+            const previousSpell = this.spells[i - 1]
+            this.spells[i - 1] = spell
+            this.spells[i] = previousSpell
+
+            this.save()
+        }
     }
 
     removeSpell(ev) {
         // Removes the spell from the DOM
         const button = ev.target
-        const item = button.closest('.spell')
-        item.parentNode.removeChild(item)
+        const listItem = button.closest('.spell')
+        listItem.parentNode.removeChild(listItem)
 
         // Removes the spell from the array
         const i = this.spells.indexOf(spell)
@@ -103,20 +165,9 @@ class App {
     }
 
     favToggle() {
-        console.log("I like it!")
         const button = ev.target
-        const item = button.closest('.spell')
-        spell.favourite = item.classList.toggle('fav')
-        this.save()
-    }
-
-    moveDown(spell, ev) {
-        // find the <li>
-        const button = ev.target
-        const item = button.closest('.spell')
-
-        // find it in the array
-        const i = this.spells.indexOf(spell)
+        const listItem = button.closest('.spell')
+        spell.favourite = listItem.classList.toggle('fav')
         this.save()
     }
 
