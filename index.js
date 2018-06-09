@@ -12,8 +12,8 @@ button.addEventListener('click', changeHeader);
 
 class App {
     constructor() {
-        this.template = document.querySelector('.spell.template')
         this.spells = []
+        this.template = document.querySelector('.spell.template')
         this.list = document.querySelector('#spells')
 
         this.load()
@@ -47,11 +47,11 @@ class App {
 
     renderProperty(name, value) {
         // el stands for the element we're creating
-        const el = document.createElement('span');
-        el.classList.add(name);
-        el.textContent = value + " ";
-        el.setAttribute('title', value);
-        return el;
+        const el = document.createElement('span')
+        el.classList.add(name)
+        el.textContent = value + " "
+        el.setAttribute('title', value)
+        return el
     }
 
     renderList(spell) {
@@ -59,7 +59,7 @@ class App {
         listItem.classList.remove('template')
 
         // ['name', 'level']
-        const properties = Object.keys(spell);
+        const properties = Object.keys(spell)
 
         properties.forEach(property => {
             const el = listItem.querySelector(`.${property}`)
@@ -108,6 +108,7 @@ class App {
 
         return listItem;
     }
+
     moveDown(spell, ev) {
         // Find the <li>
         const button = ev.target
@@ -168,34 +169,32 @@ class App {
         // Removes the spell from the array
         const i = this.spells.indexOf(spell)
         this.spells.splice(i, 1)
+
         this.save()
     }
 
     addSpell(spell) {
-
         this.spells.push(spell)
 
-        const newList = this.renderList(spell);
+        const newList = this.renderList(spell)
 
-        const currentUl = document.querySelector('#spells');
-        currentUl.appendChild(newList);
+        this.list.appendChild(newList)
     }
 
     changeWithSubmit(ev) {
-        ev.preventDefault()
-
-        const f = ev.target;
+        const f = ev.target
 
         const spell = {
             name: f.yourSpell.value,
             description: f.yourDesc.value,
             favourite: false,
         }
+
         this.addSpell(spell)
         this.save()
 
-        f.reset();
-        f.yourSpell.focus();
+        f.reset()
+        f.yourSpell.focus()
     }
 }
 

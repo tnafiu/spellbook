@@ -54,9 +54,6 @@ img#wizard-flying {
 .middle {
     transition: .5s ease;
     opacity: 0;
-    /*position: absolute;
-    top: 50%;
-    left: 50%;*/
     position: absolute;
     right: 3vw;
     bottom: 14vw;
@@ -86,5 +83,28 @@ img#magic-wand {
     right: 5vw;
     bottom: 5vw;
     transform: rotate(15deg);
-    width: 20vw;
+    width: 15vw;
+}
+
+button.delete {
+    background-color: #ff3333;
+    color: white;
+}
+
+button.fav {
+    background-color: #F8BE3D;
+    color: black;
+}
+
+button.move {
+    background-color: #3366FF;
+    color: white;
+}
+
+.template {
+    display: none;
+}
+
+.spell.fav {
+    background-color: goldenrod;
 }
